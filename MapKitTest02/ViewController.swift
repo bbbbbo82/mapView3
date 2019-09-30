@@ -130,20 +130,26 @@ class ViewController: UIViewController, MKMapViewDelegate {
             annotationView!.annotation = annotation
         }
         
-        // pin색깔 변경
+        var imgV = UIImageView()
+        
+        
+        // pin색깔, 이미지 변경
         if annotation.title! == "동의과학대학교"  {
             annotationView?.pinTintColor = UIColor.red
-            let imgV = UIImageView(image: UIImage(named: "dit.png"))
-            imgV.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-            annotationView?.leftCalloutAccessoryView = imgV
-        } else {
+            imgV = UIImageView(image: UIImage(named: "dit.png"))
+        } else if annotation.title! == "부산 시민공원"  {
+            annotationView?.pinTintColor = UIColor.green
+            imgV = UIImageView(image: UIImage(named: "cat.jpg"))
+        } else if annotation.title! == "광안대교"  {
             annotationView?.pinTintColor = UIColor.blue
-            let imgV = UIImageView(image: UIImage(named: "cat.jpg"))
-            imgV.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-            annotationView?.leftCalloutAccessoryView = imgV
+            imgV = UIImageView(image: UIImage(named: "광안대교.png"))
+        } else {
+            annotationView?.pinTintColor = UIColor.yellow
+            imgV = UIImageView(image: UIImage(named: "태종대.png"))
         }
         
-        
+        imgV.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        annotationView?.leftCalloutAccessoryView = imgV
         
         
         
@@ -153,7 +159,7 @@ class ViewController: UIViewController, MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         
         // 알림창 객체 생성
-        let alert = UIAlertController(title: "동의과학대학교", message: "We Are DIT", preferredStyle: .alert)
+        let alert = UIAlertController(title: (view.annotation?.title)!, message: (view.annotation?.subtitle)!, preferredStyle: .alert)
         
         // 확인 버튼
         let ok = UIAlertAction(title:"확인", style: .default)

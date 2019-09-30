@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		046637442341D69900C60C2F /* dit.png in Resources */ = {isa = PBXBuildFile; fileRef = 046637432341D69900C60C2F /* dit.png */; };
+		046637462341DB3700C60C2F /* 광안대교.png in Resources */ = {isa = PBXBuildFile; fileRef = 046637452341DB3700C60C2F /* 광안대교.png */; };
+		046637482341DB6900C60C2F /* 태종대.png in Resources */ = {isa = PBXBuildFile; fileRef = 046637472341DB6900C60C2F /* 태종대.png */; };
 		046AB5952338ADD500BE187C /* cat.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 046AB5942338ADD500BE187C /* cat.jpg */; };
 		0486DD9B232F5346006B3CAF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0486DD9A232F5346006B3CAF /* AppDelegate.swift */; };
 		0486DD9D232F5346006B3CAF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0486DD9C232F5346006B3CAF /* ViewController.swift */; };
@@ -19,6 +21,8 @@
 
 /* Begin PBXFileReference section */
 		046637432341D69900C60C2F /* dit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dit.png; sourceTree = "<group>"; };
+		046637452341DB3700C60C2F /* 광안대교.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "광안대교.png"; sourceTree = "<group>"; };
+		046637472341DB6900C60C2F /* 태종대.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "태종대.png"; sourceTree = "<group>"; };
 		046AB5942338ADD500BE187C /* cat.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cat.jpg; sourceTree = "<group>"; };
 		0486DD97232F5346006B3CAF /* MapKitTest02.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MapKitTest02.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0486DD9A232F5346006B3CAF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -62,6 +66,8 @@
 		0486DD99232F5346006B3CAF /* MapKitTest02 */ = {
 			isa = PBXGroup;
 			children = (
+				046637472341DB6900C60C2F /* 태종대.png */,
+				046637452341DB3700C60C2F /* 광안대교.png */,
 				046637432341D69900C60C2F /* dit.png */,
 				046AB5942338ADD500BE187C /* cat.jpg */,
 				0486DD9A232F5346006B3CAF /* AppDelegate.swift */,
@@ -140,8 +146,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				046637462341DB3700C60C2F /* 광안대교.png in Resources */,
 				046637442341D69900C60C2F /* dit.png in Resources */,
 				0486DDA5232F5348006B3CAF /* LaunchScreen.storyboard in Resources */,
+				046637482341DB6900C60C2F /* 태종대.png in Resources */,
 				0486DDA2232F5348006B3CAF /* Assets.xcassets in Resources */,
 				046AB5952338ADD500BE187C /* cat.jpg in Resources */,
 				0486DDA0232F5347006B3CAF /* Main.storyboard in Resources */,
