@@ -18,34 +18,15 @@ class ViewController: UIViewController, MKMapViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         
         // MKMapViewDelegate와 UIViewController(self)
         mapView.delegate = self
         
-        
-        
-        
         // MapType 설정 (standard, hybrid, satellite)
         mapView.mapType = MKMapType.standard
-        //mapView.mapType = MKMapType.hybrid
-        //mapView.mapType = MKMapType.satellite
         
         // 위도, 경도 설정 (DIT 35.165964, 129.072543)
         let location = CLLocationCoordinate2D(latitude: 35.165964, longitude: 129.072543)
-        
-        // 반경 설정(숫자가 작을수록 세부적으로)
-        //let span = MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
-        
-        // region 설정
-        //let region = MKCoordinateRegion(center: location, span: span)
-        
-        // span과 region 같이 지정
-        //let region = MKCoordinateRegion(center: location, latitudinalMeters: 300, longitudinalMeters: 300)
-        
-        // mapView 에 add
-        //mapView.setRegion(region, animated: true)
-        
         
         // pin꼽기
         let pin1 = MKPointAnnotation()
@@ -101,7 +82,6 @@ class ViewController: UIViewController, MKMapViewDelegate {
     }
     
     
-    
     // MKMapViewDelegate 메소드
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
@@ -121,17 +101,12 @@ class ViewController: UIViewController, MKMapViewDelegate {
             let btn = UIButton(type: .detailDisclosure)
             annotationView?.rightCalloutAccessoryView = btn
             
-            // 왼쪽 : 이미지 넣기
-            //let imgV = UIImageView(image: UIImage(named: "cat.jpg"))
-            //imgV.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-            //annotationView?.leftCalloutAccessoryView = imgV
-            
         } else {
             annotationView!.annotation = annotation
         }
         
+        // 왼쪽 : 이미지 넣기
         var imgV = UIImageView()
-        
         
         // pin색깔, 이미지 변경
         if annotation.title! == "동의과학대학교"  {
@@ -150,8 +125,6 @@ class ViewController: UIViewController, MKMapViewDelegate {
         
         imgV.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         annotationView?.leftCalloutAccessoryView = imgV
-        
-        
         
         return annotationView
     }
