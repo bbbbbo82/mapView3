@@ -9,6 +9,19 @@
 import UIKit
 import MapKit
 
+class ViewPoint: NSObject, MKAnnotation {
+    
+    var coordinate: CLLocationCoordinate2D
+    var title: String?
+    var subtitle: String?
+    
+    init(coordinate: CLLocationCoordinate2D, title: String, subtitle: String) {
+        self.coordinate = coordinate
+        self.title = title
+        self.subtitle = subtitle
+    }
+}
+
 class ViewController: UIViewController, MKMapViewDelegate {
     
     // 배열 선언
@@ -17,55 +30,32 @@ class ViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var mapView: MKMapView!
     
     override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        // MKMapViewDelegate와 UIViewController(self)
-        mapView.delegate = self
+        super.viewDidLoad()        
         
         // MapType 설정 (standard, hybrid, satellite)
         mapView.mapType = MKMapType.standard
         
-        // 위도, 경도 설정 (DIT 35.165964, 129.072543)
-        let location = CLLocationCoordinate2D(latitude: 35.165964, longitude: 129.072543)
+        //지도의 center, region, Map 설정
+        zoomToRegion()
         
         // pin꼽기
-        let pin1 = MKPointAnnotation()
-        pin1.coordinate = location
-        pin1.title = "동의과학대학교"
-        pin1.subtitle = "We Are DIT"
-        //mapView.addAnnotation(pin1)
-        pins.append(pin1)   //배열 pins에 pin1 넣기
-        
-        // 시민공원 pin꼽기 35.1681824, 129.0556455
-        let pin2 = MKPointAnnotation()
-        pin2.coordinate.latitude = 35.1681824
-        pin2.coordinate.longitude = 129.0556455
-        pin2.title = "부산 시민공원"
-        pin2.subtitle = "부산의 랜크마크"
-        //mapView.addAnnotation(pin2)
-        pins.append(pin2)   //배열 pins에 pin2 넣기
-        
-        // 광안대교 pin꼽기 35.147919, 129.130123
-        let pin3 = MKPointAnnotation()
-        pin3.coordinate.latitude = 35.147919
-        pin3.coordinate.longitude = 129.130123
-        pin3.title = "광안대교"
-        pin3.subtitle = "부산의 랜드마크"
-        //mapView.addAnnotation(pin3)
-        pins.append(pin3)   //배열 pins에 pin3 넣기
-        
-        // 태종대 pin꼽기 35.0517554, 129.0856113
-        let pin4 = MKPointAnnotation()
-        pin4.coordinate.latitude = 35.0517554
-        pin4.coordinate.longitude = 129.0856113
-        pin4.title = "태종대"
-        pin4.subtitle = "해변 전망대가 있는 고지대 공원"
-        //mapView.addAnnotation(pin4)
-        pins.append(pin4)   //배열 pins에 pin4 넣기
+        let pin1 = ViewPoint(coordinate: CLLocationCoordinate2D(latitude: 35.166197, longitude: 129.072594), title: "동의과학대학교", subtitle: "We Are DIT")
+        let pin2 = ViewPoint(coordinate: CLLocationCoordinate2D(latitude: 35.1681824, longitude: 129.0556455), title: "부산시민공원", subtitle: "부산의 시민공원")
+        let pin3 = ViewPoint(coordinate: CLLocationCoordinate2D(latitude: 35.147919, longitude: 129.130123), title: "광안대교", subtitle: "부산의 핫플레이스")
+        let pin4 = ViewPoint(coordinate: CLLocationCoordinate2D(latitude: 35.0517554, longitude: 129.0856113), title: "태종대", subtitle: "부산의 관광명소(절벽 위 공원)")
         
         // mapView의 모든 pin들을 나타냄(배열)
-        // showAnnotations : 반경 지정 없이 모든 pin을 지도에 나타나게 함
-        mapView.showAnnotations(pins, animated: true)
+        mapView.addAnnotations([pin1, pin2, pin3, pin4])
+        
+        // MKMapViewDelegate와 UIViewController(self)
+        mapView.delegate = self
+    }
+    
+    func zoomToRegion() {
+        
+        let location = CLLocationCoordinate2D(latitude: 35.166197, longitude: 129.072594)
+        let region = MKCoordinateRegion(center: location, latitudinalMeters: 2000.0, longitudinalMeters: 4000.3)
+        mapView.setRegion(region, animated: true)
     }
     
     // MapType 버튼 설정 (standard, hybrid, satellite)
@@ -93,7 +83,7 @@ class ViewController: UIViewController, MKMapViewDelegate {
         // 재활용할 pin이 없으면 pin 생성
         if annotationView == nil {
             annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-            annotationView!.canShowCallout = true
+            annotationView?.canShowCallout = true
             //annotationView?.pinTintColor = UIColor.blue   // pin 색깔 변경
             annotationView?.animatesDrop = true
             
@@ -102,7 +92,7 @@ class ViewController: UIViewController, MKMapViewDelegate {
             annotationView?.rightCalloutAccessoryView = btn
             
         } else {
-            annotationView!.annotation = annotation
+            annotationView?.annotation = annotation
         }
         
         // 왼쪽 : 이미지 넣기
